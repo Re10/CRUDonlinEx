@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./style.css">
+
+    <title>Hello, world!</title>
+</head>
+
+<body ng-controller="edittopicController">
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <form name="myForm" ng-submit="submit(newtopic._id)">
+
+        <div>
+
+        </div>
+
+        <div class="form-container">
+            <h3><strong>Add Subject</strong></h3>
+
+
+
+            <div class="form-group ">
+                <label for="subjetc">Subject Name:</label>
+                <input type="text" class="form-control" ng-model="newtopic.subjectId.subName" readonly />
+            </div>
+            <div class="form-group ">
+                <label for="subjetc">topic Name:</label>
+                <input type="text" class="form-control" ng-model="newtopic.topicName">
+            </div>
+
+            <div class="form-group col-md-6">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+
+
+        </div>
+    </form>
+
+</body>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+
+</html>

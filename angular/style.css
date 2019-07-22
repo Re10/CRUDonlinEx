@@ -1,0 +1,53 @@
+.form-row{
+    padding: 50px;
+}
+.btn{
+    text-align: center;
+}
+.drop{
+    width: 10%;
+    height: 50%;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    margin: 0em;
+    font: 400 13.3333px Arial;
+}
+.form-container{
+    width:80%;
+    height: auto;
+    align-content: center;
+    padding: 5%;
+    margin-left:10%; 
+    box-shadow: 1px 10px 10px gray;
+}
+.form-containe{
+    width:50%;
+    height: auto;
+    align-content: center;
+    padding: 5%;
+    margin-left:10%; 
+    box-shadow: 1px 10px 10px gray;
+}
+#choicesDisplay {
+    padding: 10px;
+    background: rgb(227, 250, 227);
+    border: 1px solid rgb(171, 239, 171);
+    color: rgb(9, 56, 9);
+}
+.remove{
+    background: #C76868;
+    color: #FFF;
+    font-weight: bold;
+    font-size: 21px;
+    border: 0;
+    cursor: pointer;
+    display: inline-block;
+    padding: 4px 9px;
+    vertical-align: top;
+    line-height: 100%;   
+}

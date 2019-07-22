@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AngularJS Simple CRUD</title>
+    <script src="angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.22/angular-ui-router.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.7/angular-material.min.js"></script>
+
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-messages.min.js"></script>
+
+ 
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+     <!--  Chips   Angular Material Javascript now available via Google CDN; version 1.1.9 used here -->
+     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.9/angular-material.min.js"></script>
+
+
+
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js">
+     </script>
+     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js">
+     </script>
+     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+ 
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+ 
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+     
+     <script src="app.js"></script>
+     <script src="./controller/subjectCtrl.js"></script>
+     <script src="./controller/topicCtrl.js"></script>
+     <script src="./controller/edittopicCtrl.js"></script>
+     <script src="./controller/quetsionCtrl.js"></script>
+     <script src="./controller/editqueCtrl.js"></script>
+
+</head>
+<style>
+    .active {
+        font-weight: bold;
+    }
+</style>
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <span class="navbar-text" style="color:orange; font-size:20px;">
+            <strong>Online Exam</strong>
+        </span>
+        <ul class="navbar-nav">
+
+            <!-- <li class="nav-item">
+                <a ui-sref="#" ui-sref-active="active" class="nav-link" style="color:white">Home</a>
+            </li> -->
+            <li class="nav-item">
+                <a ui-sref="subject" ui-sref-active="active" class="nav-link" style="color:white">Add-Subject</a>
+            </li>
+            <li class="nav-item">
+                <a ui-sref="topic" ui-sref-active="active" class="nav-link" style="color:white">Add-Topic</a>
+            </li>
+            <li class="nav-item">
+                <a ui-sref="question" ui-sref-active="active" class="nav-link" style="color:white">Add-Qestions</a>
+            </li>
+            
+          
+
+        </ul>
+    </nav>
+    <div>
+        <ui-view></ui-view>
+    </div>
+
+</body>
+
+</html>

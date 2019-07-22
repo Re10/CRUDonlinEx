@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./style.css">
+
+    <title>Hello, world!</title>
+  </head>
+  <body ng-controller="topicController">
+  
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <form name="myForm" ng-submit="submit()">
+   
+        <div>
+
+        </div>
+
+        <div class="form-container">
+            <h3><strong>Add Topic</strong></h3>
+         
+            <!-- <div class="form-group ">
+                <label for="subjetc">Subject Name:</label>
+                <select ng-model="register.countryId" ng-options="country.id as country.name for country in register.countries"></select>
+            </div> -->
+            <div class="form-group ">
+            <select name="subject" ng-model="subject">
+                <label for="subjetc">SubjectName:</label>
+                <option value="">--Select Subject--</option>
+                
+                <option ng-repeat="option in result" value="{{option._id}}">{{option.subName}}</option>
+                
+                </select>
+            </div> 
+            <div class="form-group ">
+                    <label for="topic">Topic Name:</label>
+                    <input type="text" class="form-control" ng-model="newtopic.topicName" placeholder="Addtopic">
+                </div>
+            <div class="form-group col-md-6">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            <span style="color:red">{{msg}}</span><br />
+           
+        </div>
+    </form>
+    <div class="form-container">
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Topic Id</th>
+                    <th scope="col">Subject Name</th>
+                    <th scope="col">Topic Name</th>
+                    <th scope="col">Action</th>
+                    <th scope="col">Action</th>
+                    </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="topic in resulttopic">
+                    <td>{{$index+1}}</td>
+                    <td>{{topic.subjectId.subName}}</td>
+                    <td>{{topic.topicName}}</td>
+                    <td><a ui-sref="edittopic({id:topic._id})" ui-sref-active="active" class="btn btn-success">Edit</a>
+                    </td>
+                    <td><button type="submit" class="btn btn-primary" ng-click="delete(topic._id)">Delete</button>
+                    </td>
+                    <input type="hidden" name="id" ng-model="sub.id">
+                </tr>
+
+
+            </tbody>
+        </table>
+
+    </div>
+    
+
+</body>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+</html>

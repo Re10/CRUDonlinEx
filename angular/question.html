@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-messages.min.js"></script>
+    <!--////////////////////////////-->
+    
+    <link rel="stylesheet" href="./style.css">
+
+    <title>Hello, world!</title>
+</head>
+
+<body ng-controller="questionController">
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <form name="myForm" ng-submit="submit()">
+
+        <div class="form-container">
+            <h3><strong>Add Questions</strong></h3>
+            <div class="form-group ">
+                <select name="subject" ng-change="getSubDetail(subjectId)" ng-model="subjectId">
+                    <label for="topic">Subject Name:</label>
+                    <option value="">--Select Subject--</option>
+
+                    <option ng-repeat="option in resultsub" value="{{option._id}}" >{{option.subName}}</option>
+
+                </select>
+            </div>
+            <div class="form-group ">
+                <select name="topic"  ng-change="gettopic(topic)" ng-model="topic">
+                    <label for="topic">Topic Name:</label>
+                    <option value="">--Select Topics--</option>
+
+                    <option ng-repeat="opt in resulttopic" ng-if="opt.subjectId._id == subId"value="{{opt._id}}">{{opt.topicName}}</option>
+
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="fname">Question Text</label>
+                <input type="text" class="form-control" id="name" placeholder="Question" ng-model="newque.queText">
+            </div>
+
+            <div class="form-group">
+                <label for="type">Select Types</label><br>
+                <input type="radio" name="type" value="mutipleChoice" ng-click="multiOpt()" ng-model="newque.type">
+                Multiple-Choice<br>
+                <input type="radio" name="type" value="multipleResponse" ng-click="multiRes()" ng-model="newque.type">
+                Multiple-Response
+
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2">
+                    <input type="button" class="btn btn-info" ng-click="addNewChoice()" value="ADD OPTIONS">
+                </div>
+                <div class="col-sm-5" style="display:inline-block;">
+                    <fieldset data-ng-repeat="field in choiceSet.choices track by $index">
+                        <input type="text" rows="4" cols="50" ng-model=" choiceSet.choices[$index]" />
+                        <button type="button" class="btn btn-default btn-sm" ng-click="removeChoice($index)">
+                            <span class="glyphicon glyphicon-minus"></span> REMOVE
+                        </button>
+
+                    </fieldset>
+
+                </div>
+                <div class=" col-sm-5" ng-show="multipleResponse ==false" style="display:inline-block;">
+                    <label ng-repeat="opt in que">
+                        <input type="radio" name="option" ng-click="check($event,$index)" ng-model="newque.correctAns"
+                            value="correctAns">{{ opt }}
+                    </label>
+                </div>
+                <div class=" col-sm-5" ng-show="multipleResponse ==true" style="display:inline-block;">
+                    <label ng-repeat="opt in que">
+                        <input ng-click="checkoptions($event,$index)" type="checkbox" name="option"
+                            value="correctAns">{{ opt }}
+                    </label>
+                    <span style="color:red;" ng-show="validationmsg ==true">{{msg}}</span><br />
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="solution">Solutions</label>
+                <input type="text" class="form-control" id="name" placeholder="Solution" ng-model="newque.solution">
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6" ng-cloak>
+                    <label for="tag">Tags</label>
+
+                    <md-chips class="custom-chips" ng-model="tag" ng-click="add()">
+
+                        <button md-chip-remove class="md-primary closeButton">
+                            <md-icon md-svg-icon="md-close"></md-icon>
+                        </button>
+                    </md-chips>
+
+
+
+                    <br />
+                    <span style="color:Red">{{mes}}</span>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            <span style="color:red">{{msg}}</span><br />
+
+        </div>
+    </form>
+    <div class="form-container">
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Question Id</th>
+                    <th scope="col">Topic Name</th>
+                    <th scope="col">Question Text</th>
+                    <th scope="col">Options</th>
+                    <th scope="col">Correct</th>
+                    <th scope="col">Action</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="que in result" ng-if="que.topic._id == topicId">
+                    <td>{{$index+1}}</td>
+                    <td>{{que.topic.topicName}}</td>
+                    <td>{{que.queText}}</td>
+                    <td>{{que.option}}</td>
+                    <td>{{que.correctAns}}</td>
+                    <td><a ui-sref="editque({id:que._id})" ui-sref-active="active" class="btn btn-success">Edit</a>
+                    </td>
+                    <td><button type="submit" class="btn btn-primary" ng-click="delete(que._id)">Delete</button>
+                    </td>
+                    <input type="hidden" name="id" ng-model="que.id">
+                </tr>
+
+
+            </tbody>
+        </table>
+
+    </div>
+
+
+
+
+</body>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+
+</html>

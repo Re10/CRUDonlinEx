@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./style.css">
+
+    <title>Hello, world!</title>
+</head>
+
+<body ng-controller="editqueController">
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <form name="myForm" ng-submit="submit(newque._id)">
+
+        <div class="form-container">
+            <h3><strong>Add Topic</strong></h3>
+            <div class="form-group ">
+                <label for="fname">Topic Name:</label>
+                <input type="text" class="form-control" id="name" ng-model="newque.topic.topicName" readonly />
+            </div>
+            <div class="form-group">
+                <label for="fname">Question Text</label>
+                <input type="text" class="form-control" id="name" placeholder="Question" ng-model="newque.queText">
+            </div>
+            <div class="form-group">
+                <label for="type">Select Types</label><br>
+                <input type="radio" name="type" value="mutipleChoice" ng-click="multiOpt()" ng-model="newque.type">
+                Multiple-Choice<br>
+                <input type="radio" name="type" value="multipleResponse" ng-click="multiRes()" ng-model="newque.type">
+                Multiple-Response
+            </div>
+            <div class="form-group row">
+                <!-- <label for="option">Options:</label> -->
+                <div class=" col-sm-5" ng-show="multipleResponse ==false" style="display:inline-block;">
+                    <label ng-repeat="opt in newque.option track by $index ">
+                        <input id="radio-{{$index}}" type="radio" ng-model="newque.correctAns.checked" ng-click="check($event,$index)"
+                            value="{{$index}}" ng-checked="{{newque.correctAns[0] === $index}}">{{opt}}</input><br>
+
+                    </label>
+
+                </div>
+                <div class=" col-sm-5" ng-show="multipleResponse ==true" style="display:inline-block;">
+                    <label ng-repeat="opt in newque.option track by $index ">
+
+                        <input ng-click="checkoptions($event,$index)" type="checkbox" name="option"
+                            ng-model="newque.correctAns.checked" ng-checked="$index == newque.correctAns[$index]" ng-click="checkoptions($event,$index)"
+                            value="correctAns[$index]">{{ opt }}
+                    </label>
+                    <span style="color:red;" ng-show="validationmsg ==true">{{msg}}</span><br />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-2">
+                    <input type="button" class="btn btn-info" ng-click="addNewChoice()" value="ADD OPTIONS">
+                </div>
+
+                <div class="col-sm-5" style="display:inline-block;">
+                    <fieldset data-ng-repeat="field in newque.option track by $index">
+                        <input type="text" rows="4" cols="50" ng-model=" newque.option[$index]" />
+                        <button type="button" class="btn btn-default btn-sm" ng-click="removeChoice($index)">
+                            <span class="glyphicon glyphicon-minus"></span> REMOVE
+                        </button>
+
+                    </fieldset>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="solution">Solutions</label>
+                <input type="text" class="form-control" id="name" placeholder="Solution" ng-model="newque.solution">
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6" ng-cloak>
+                    <label for="tag">Tags</label>
+
+                    <md-chips class="custom-chips" ng-model="tag" ng-click="add()">
+
+                        <button md-chip-remove class="md-primary closeButton">
+                            <md-icon md-svg-icon="md-close"></md-icon>
+                        </button>
+                    </md-chips>
+
+
+
+                    <br />
+                    <span style="color:Red">{{mes}}</span>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            <span style="color:red">{{msg}}</span><br />
+
+        </div>
+
+
+
+    </form>
+
+
+</body>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+
+</html>
