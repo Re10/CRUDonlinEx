@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<!--------------------------md-Auto---------------------------->
+<script src="//assets.codepen.io/assets/common/stopExecutionOnTimeout.js?t=1"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js"></script>
+    <script src="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.0-rc.5/angular-material.js"></script>
+    
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic"/>
+    <link rel="stylesheet prefetch" href="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.0-rc.5/angular-material.css"/>
+    <link rel="stylesheet prefetch" href="https://material.angularjs.org/1.1.0-rc.5/docs.css"/>
+    <!---->
+    <link rel="stylesheet" href="./style.css">
+
+    <title>Hello, world!</title>
+
+</head>
+<style>
+        .chipsdemoCustomInputs md-content.autocomplete {
+          min-height: 200px; }
+        
+        .chipsdemoCustomInputs input[type=number] {
+          width: 110px; }
+        
+        .chipsdemoCustomInputs .veggie-option {
+          float: left;
+          width: 20%;
+          box-sizing: border-box;
+          padding: 0 8px; }
+        
+        .chipsdemoCustomInputs .veggie-option .md-item-text {
+          padding: 8px;
+          border-radius: 3px; }
+        
+        .chipsdemoCustomInputs .veggie-option .md-item-text h3,
+        .chipsdemoCustomInputs .veggie-option .md-item-text p {
+          padding: 0;
+          margin: 0; }
+        
+        </style>
+
+
+<body ng-controller="edittestController">
+
+    {{msg}}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <form name="myForm" ng-submit="submit(newtest._id)">
+
+        <div class="form-container">
+            <h3><strong>Add Test</strong></h3>
+            <!-- <div class="form-group" style="display: inline-block;">
+                <input type="text" placeholder="Search.." name="search2" ng-model="tag">
+                <button type="button" class="btn btn-info" ng-click="Search()">
+                    <span class="glyphicon glyphicon-search"></span> Search
+                </button>
+            </div> -->
+
+            <div class="form-group">
+                <label for="fname">Test Name</label>
+                <input type="text" class="form-control" id="name" placeholder="test name" ng-model="newtest.name">
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="desc" ng-model="newtest.description">
+                </textarea>
+            </div>
+         
+            <div class="form-group" style="display: inline-block;" >
+            <div class="row">
+            <div class="form-group col-md-6" ng-cloak>
+            <label for="tag">Tags</label>
+            <md-chips ng-model="tag" md-autocomplete-snap="" 
+             md-transform-chip="transformChip($chip)" md-require-match="autocompleteDemoRequireMatch" 
+             input-aria-label="Favorite tag">
+            <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" 
+                 md-items="item in querySearch(searchText)" md-item-text="item" 
+                input-aria-describedby="autocompleteTitle" placeholder="Search for a tags">
+            <span md-highlight-text="searchText">{{item}}</span>
+          </md-autocomplete>
+    <md-chip-template>
+     <span>
+    <strong>{{$chip}}</strong>
+    </span>
+    </md-chip-template>
+    </md-chips>
+
+    
+    </div>
+</div>
+    <button type="button" class="btn btn-info" ng-click="Search()">
+    <span class="glyphicon glyphicon-search"></span> Search
+    </button>
+
+    </div>
+              
+                <div class="form-group">
+                                <table class="table table-dark">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Select</th>
+                                            <th scope="col">Question Text</th>
+                                            <th scope="col">Right</th>
+                                            <th scope="col">Wrong</th>
+                                          
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="que in newtest.questions track by $index">
+                                          
+                                                <td> <input ng-click="checkoptions($event,$index)" id="{{que._id}}" type="checkbox" name="option"
+                                                    value=" {{que.questions}}#{{que.rightmarks}}#{{ que.wrongmarks}}"></td>
+                                            <td  >  {{que.question.queText }}</td>
+                                            <td> <input type="text" id="rmark" placeholder="Right Marks" style="color: black;"
+                                                ng-model="que.rightmarks" value="{{rightmarks}}" ng-blur="valueChange($event,$index)" ></td>
+                                            <td> <input type="text" id="wmark" placeholder="Wrong Marks" style="color: black;"
+                                                ng-model="que.wrongmarks" value="{{wrongmarks}}"></td>
+                                           
+                                            <input type="hidden" name="id" ng-model="que.id">
+                                        </tr>
+                        
+                        
+                                    </tbody>
+                                </table>
+
+                    </label>
+                   
+                
+               
+         
+            </div>
+
+        
+            <div class="row">
+             
+                <div class="form-group col-md-6">
+                    <label for="lname">Passing Score:</label>
+                    <input type="text" class="form-control" id="pscore" placeholder="Passing Score"
+                        ng-model="newtest.passingscore" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="fname">Duration:</label>
+                    <input type="text" class="form-control" id="rmark" placeholder="Duration"
+                        ng-model="newtest.duration" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group ">
+                    <select name="status" ng-model="newtest.status">
+                        <label for="status">Status:</label>
+                        <option value="">--Select Status--</option>
+    
+                        <option ng-repeat="option in status" value="{{option}}" >{{option}}</option>
+    
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</body>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+
+</html>

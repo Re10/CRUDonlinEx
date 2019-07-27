@@ -1,41 +1,107 @@
-<HTML>
-    <HEAD>
-    <TITLE>Dynamically add Textbox, Radio, Button in html Form using JavaScript</TITLE>
-    <SCRIPT language="javascript">
-    function add(type) {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <script src="https://assets.codepen.io/assets/common/stopExecutionOnTimeout.js?t=1"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js"></script>
+    <script src="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.0-rc.5/angular-material.js"></script>
     
-        //Create an input type dynamically.
-        var element = document.createElement("input");
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic"/>
+    <link rel="stylesheet prefetch" href="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.0-rc.5/angular-material.css"/>
+    <link rel="stylesheet prefetch" href="https://material.angularjs.org/1.1.0-rc.5/docs.css"/>
     
-        //Assign different attributes to the element.
-        element.setAttribute("type", type);
-        element.setAttribute("value", type);
-        element.setAttribute("name", type);
+ 
     
+   
     
-        var foo = document.getElementById("fooBar");
+  
+</head>
+<style>
+.chipsdemoCustomInputs md-content.autocomplete {
+  min-height: 200px; }
+
+.chipsdemoCustomInputs input[type=number] {
+  width: 110px; }
+
+.chipsdemoCustomInputs .veggie-option {
+  float: left;
+  width: 20%;
+  box-sizing: border-box;
+  padding: 0 8px; }
+
+.chipsdemoCustomInputs .veggie-option .md-item-text {
+  padding: 8px;
+  border-radius: 3px; }
+
+.chipsdemoCustomInputs .veggie-option .md-item-text h3,
+.chipsdemoCustomInputs .veggie-option .md-item-text p {
+  padding: 0;
+  margin: 0; }
+
+</style>
+<body>
+    <div ng-controller="demoController" layout="column" ng-cloak="">
+        {{msg}}
+
+            <button type="submit" class="btn btn-primary" ng-click="upload()">Upload</button>
+        
+         <h2 id="autocompleteTitle" class="md-title">
+          Use <code>md-autocomplete</code> to build an ordered set of chips.
+        </h2>
+        <div class="form" ng-if="myvar == true">
+        <md-chips ng-model="tag" md-autocomplete-snap="" 
+        md-transform-chip="transformChip($chip)" md-require-match="autocompleteDemoRequireMatch" 
+        input-aria-label="Favorite Vegetables">
+          <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" 
+          md-items="item in querySearch(searchText)" md-item-text="item" 
+          input-aria-describedby="autocompleteTitle" placeholder="Search for a vegetable">
+            <span md-highlight-text="searchText">{{item}}</span>
+          </md-autocomplete>
+          <md-chip-template>
+            <span>
+              <strong>{{$chip}}</strong>
+            
+            </span>
+          </md-chip-template>
+        </md-chips>
     
-        //Append the element in page (in span).
-        foo.appendChild(element);
+        <br>
+        <h2 class="md-title">Vegetable Options</h2>
     
-    }
-    </SCRIPT>
-    </HEAD>
-    <BODY>
-    <FORM>
-    <H2>Dynamically add element in form.</H2>
-    Select the element and hit Add to add it in form.
-    <BR/>
-    <SELECT name="element">
-        <OPTION value="button">Button</OPTION>
-        <OPTION value="text">Textbox</OPTION>
-        <OPTION value="radio">Radio</OPTION>
-    </SELECT>
+        <md-list>
+          <md-list-item class="md-2-line veggie-option" ng-repeat="veg in ctrl.vegetables" layout="row" layout-wrap="">
+            <div class="md-item-text md-whiteframe-z1" flex="">
+              <h3>{{veg}}</h3>
+             
+            </div>
+          </md-list-item>
+        </md-list>
     
-    <INPUT type="button" value="Add" onclick="add(document.forms[0].element.value)"/>
+      </md-content> 
     
-    <span id="fooBar">&nbsp;</span>
+                </div> 
+            </div>
     
-    </FORM>
-    </BODY>
-    </HTML>
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

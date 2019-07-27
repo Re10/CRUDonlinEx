@@ -19,6 +19,11 @@ function subjectController($scope, $http, $state,$stateParams) {
             console.log("within Delete method",res);
             $state.go("subject");
         })
+        console.log("Befor that Releated topic delete");
+        // $http.delete("http://localhost:4000/deletesubtopic/"+id).then(function(res){
+        //     console.log("within Delete method topic===>",res);
+        //     $state.go("subject");
+        // })
 
     }
 

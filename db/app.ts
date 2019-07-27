@@ -3,13 +3,14 @@ import { createExpressServer, useContainer } from "routing-controllers";
 import{ mongoose } from "./config";
 import { queController } from "./controller/questionCtrl";
 import { subController } from "./controller/subjectCtrl";
- import { topicController } from "./controller/topicCtrl";
+import { topicController } from "./controller/topicCtrl";
+import { testController } from "./controller/testtemplateCtrl";
 
 import express = require("express");
 var cors = require('cors');
 
 const app = createExpressServer({
-    controllers: [ subController ,topicController ,queController]
+    controllers: [ subController ,topicController ,queController ,testController]
   });
 
 //CORS middleware

@@ -16,20 +16,7 @@ function editqueController($scope, $http, $state, $stateParams) {
     $scope.choiceSet = { choices: [] };
     $scope.quest = {};
     $scope.que = [];
-    $scope.choiceSet.choices = [];
-
-    // $scope.addNewChoice = function () {
-    //     $scope.choiceSet.choices.push('');
-    // };
-    // $scope.que = $scope.choiceSet.choices;
-    // $scope.removeChoice = function (z) {
-    //     //var lastItem = $scope.choiceSet.choices.length - 1;
-    //     $scope.choiceSet.choices.splice(z, 1);
-    // };
-    // console.log("QUESTION ARRAY", $scope.que);
-    //========================//
-
-
+   
     $http.get("http://localhost:4000/editque/" + id).then(function (res) {
         console.log("RESPONSE:",res);
         console.log("Within get method of ", res.data.result);

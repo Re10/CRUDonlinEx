@@ -4,6 +4,7 @@ import { topic } from "../model/topic";
 import { sub } from "../model/subject";
 import { response } from "express";
 import * as mongo from 'mongodb';
+import * as mongoose from "mongoose";
 
 @JsonController()
  
@@ -11,8 +12,20 @@ import * as mongo from 'mongodb';
      @Post("/addque")
      addQue(@Body() record: any ,@Res() response:any) {
         console.log(record);
+        var id=new mongoose.Types.ObjectId(record.topic)
+        var recordData={
+            queText:record.queText,
+            solution:record.solution,
+            topic:id,
+            type:record.type,
+            correctAns:record.correctAns,
+            option:record.option,
+            tag:record.tag
+
+        }
+        console.log("Id =>",recordData);
         async function addQue(){
-            var result= await que.collection.insertOne(record);
+            var result= await que.collection.insertOne(recordData);
             console.log("Result==>",result);
             response.json({result});
 
@@ -34,6 +47,24 @@ listQue(@Body() record: any,@Res() response:any) {
    } 
    console.log('aaaa');
   return listQue();
+  }
+
+
+  @Post("/listallque")
+listQuestion(@Body() record: any,@Res() response:any) {
+
+    console.log("WITHIN LIST OF QUESTION FUNCTION",record);
+   var result;
+   async function listQuestion(){
+        result= await que.find(
+            { "tag": { $all: record}}
+         ).select('_id queText');                        
+        console.log("LIST Questions",result);
+        response.json({result});
+        
+   } 
+   console.log('aaaa');
+  return listQuestion();
   }
 
 

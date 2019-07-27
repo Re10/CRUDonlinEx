@@ -1,8 +1,8 @@
 
 var imgFile;
 
-var app = angular.module("myApp", ['ngMaterial','ui.router']).config(($stateProvider, $httpProvider, $urlRouterProvider) => {
-    //$qProvider.errorOnUnhandledRejections(false);
+var app = angular.module("myApp", ['ngMaterial', 'ngMessages', 'material.svgAssetsCache','ui.router']).config(($stateProvider, $httpProvider, $urlRouterProvider) => {
+    //$qProvider.errorOnUnhandledRejections(false); ['ngMaterial', 'ngMessages', 'material.svgAssetsCache']
     $stateProvider.state("subject", {
         url: "/subject",
         templateUrl: "subject.html",
@@ -33,6 +33,24 @@ var app = angular.module("myApp", ['ngMaterial','ui.router']).config(($stateProv
             controller: "editqueController",
             controllerAs: "editqueCtrl"
         })
+        .state("testtemp", {
+            url: "/testtemp",
+            templateUrl: "testtemp.html",
+            controller: "testtempController",
+            controllerAs: "testtempCtrl"
+        })
+        .state("demo", {
+            url: "/demo",
+            templateUrl: "demo.html",
+            controller: "demoController",
+            controllerAs: "demoCtrl"
+        })
+        .state("edittest", {
+            url: "/edittest/:id",
+            templateUrl: "edittest.html",
+            controller: "edittestController",
+            controllerAs: "edittestctrl",
+        })
         //.state("login", {
         //     url: "/login",
         //     templateUrl: "login.html",
@@ -46,3 +64,4 @@ var app = angular.module("myApp", ['ngMaterial','ui.router']).config(($stateProv
         // })
 });
 
+ 

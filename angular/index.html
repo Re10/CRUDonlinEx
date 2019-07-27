@@ -17,7 +17,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-aria.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-messages.min.js"></script>
 
- 
   
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -25,10 +24,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
      <!--  Chips   Angular Material Javascript now available via Google CDN; version 1.1.9 used here -->
-     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.9/angular-material.min.js"></script>
+     <!-- <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.9/angular-material.min.js"></script> -->
+<!--     -->
+     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/md-chips-select@1.0.2/md-chips-select.css">
+     <script src = "https://cdn.jsdelivr.net/npm/md-chips-select@1.0.2/md-chips-select.js"></script> -->
+<!--     -->
+<!--md-chips-->
+<!-- <script type="text/javascript" src="/bower_components/angular/angular.js"></script>
 
-
-
+<script type="text/javascript" src="/bower_components/angular-chips/dist/angular-chips.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/bower_components/angular-chips/dist/main.css"> -->
+<!---->
      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js">
      </script>
      <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js">
@@ -39,14 +45,17 @@
  
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-     
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>  
+     <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js"></script>
      <script src="app.js"></script>
      <script src="./controller/subjectCtrl.js"></script>
      <script src="./controller/topicCtrl.js"></script>
      <script src="./controller/edittopicCtrl.js"></script>
      <script src="./controller/quetsionCtrl.js"></script>
      <script src="./controller/editqueCtrl.js"></script>
+     <script src="./controller/testTemCtrl.js"></script>
+     <script src="./controller/demoCtrl.js"></script>
+     <script src="./controller/edittestCtrl.js"></script>
 
 </head>
 <style>
@@ -74,7 +83,13 @@
             <li class="nav-item">
                 <a ui-sref="question" ui-sref-active="active" class="nav-link" style="color:white">Add-Qestions</a>
             </li>
-            
+            <li class="nav-item">
+                <a ui-sref="testtemp" ui-sref-active="active" class="nav-link" style="color:white">Add-Test</a>
+            </li>
+            <li class="nav-item">
+                    <a ui-sref="demo" ui-sref-active="active" class="nav-link" style="color:white">Add Demo</a>
+                </li>
+                
           
 
         </ul>

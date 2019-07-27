@@ -40,7 +40,7 @@ function questionController($scope, $http, $state, $stateParams) {
         console.log("After click ",$scope.subId);
         for (let i = 0; i < res.data.result.length; i++) {
             $scope.resulttopic.push(res.data.result[i]);
-            console.log("subname==>",$scope.resulttopic[i].subjectId.subName);
+          //  console.log("subname==>",$scope.resulttopic[i].subjectId.subName);
         }
         console.log("Within get method of LISTTOPIC",$scope.resulttopic);
     })
@@ -53,6 +53,9 @@ function questionController($scope, $http, $state, $stateParams) {
         }
 
         console.log("Result:",$scope.result);
+        
+        console.log("LIStd ",$scope.resulttopic);
+       
     })
    
     //==Dynamic Option Feild==//
@@ -74,6 +77,7 @@ function questionController($scope, $http, $state, $stateParams) {
     $scope.submit = function () {
         console.log("Within Submit Function");
         console.log("skills are:", $scope.tag);
+        console.log("skills are topic:", $scope.topic);
         console.log("Corrct Ans", $scope.newque.correctAns);
         console.log("$scope.choice", $scope.choices);
         console.log("Result:", $scope.data);
@@ -88,7 +92,7 @@ function questionController($scope, $http, $state, $stateParams) {
         $scope.newque = {
             queText: $scope.newque.queText,
             solution: $scope.newque.solution,
-            topic: $scope.newque.topic,
+            topic: $scope.topic,
             type: $scope.newque.type,
             correctAns: $scope.data,
             option: $scope.que,
