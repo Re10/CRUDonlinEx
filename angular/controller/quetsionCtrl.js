@@ -1,7 +1,7 @@
 app.controller("questionController", questionController);
 
 function questionController($scope, $http, $state, $stateParams) {
-    console.log("withierheiheehewkghkghr");
+    
     $scope.multipleResponse = false;
     $scope.tag = [];
     $scope.resulttopic = [];
@@ -11,6 +11,7 @@ function questionController($scope, $http, $state, $stateParams) {
     $scope.data = [];
     $scope.validationmsg;
     $scope.subId;
+    $scope.showmsg=false;
     $scope.topicId;
     $scope.add = function () {
         if ($scope.skills.length == 1) {
@@ -18,43 +19,43 @@ function questionController($scope, $http, $state, $stateParams) {
         }
     }
     $scope.getSubDetail=function(id){
-        console.log("ID   ",id);
+        // console.log("ID   ",id);
         $scope.subId=id;
-        console.log("After click===> ",$scope.subId);    
+        // console.log("After click===> ",$scope.subId);    
     }
     $scope.gettopic=function(id){
-        console.log("Id Topic :",id);
+        // console.log("Id Topic :",id);
         $scope.topicId=id;
     }
-    console.log("After click===> :::",$scope.subId);
+    // console.log("After click===> :::",$scope.subId);
     $http.get("http://localhost:4000/listsubject").then(function (res) {
         for (let i = 0; i < res.data.result.length; i++) {
             $scope.resultsub.push(res.data.result[i]);
            }
-           console.log("Subject Are:",$scope.subjectId);
+        //    console.log("Subject Are:",$scope.subjectId);
           
     })
 
     $http.get("http://localhost:4000/listtopic").then(function (res) {
-        console.log("Within get method of LISTTOPIC",res);
-        console.log("After click ",$scope.subId);
+        // console.log("Within get method of LISTTOPIC",res);
+        // console.log("After click ",$scope.subId);
         for (let i = 0; i < res.data.result.length; i++) {
             $scope.resulttopic.push(res.data.result[i]);
           //  console.log("subname==>",$scope.resulttopic[i].subjectId.subName);
         }
-        console.log("Within get method of LISTTOPIC",$scope.resulttopic);
+        // console.log("Within get method of LISTTOPIC",$scope.resulttopic);
     })
-    console.log("Befor the listquestion funcion");
+    // console.log("Befor the listquestion funcion");
     $http.get("http://localhost:4000/listque").then(function (res) {
-        console.log("Within get method of ",res);
+        // console.log("Within get method of ",res);
         
         for (let i = 0; i < res.data.result.length; i++) {
             $scope.result.push(res.data.result[i]);
         }
 
-        console.log("Result:",$scope.result);
+        // console.log("Result:",$scope.result);
         
-        console.log("LIStd ",$scope.resulttopic);
+        // console.log("LIStd ",$scope.resulttopic);
        
     })
    
@@ -64,24 +65,35 @@ function questionController($scope, $http, $state, $stateParams) {
     $scope.que = [];
     $scope.choiceSet.choices = [];
     $scope.addNewChoice = function () {
+        if( $scope.choiceSet.choices.length < 6){
         $scope.choiceSet.choices.push('');
+        }
+        else
+        {
+        $scope.showmsg=true;
+        $scope.message="Maximum length is 6";
+        }
+        if($scope.choiceSet.choices.length < 2){
+            $scope.showmsg=true;
+            $scope.message="Please add atleast two options";
+        }
     };
     $scope.que = $scope.choiceSet.choices;
     $scope.removeChoice = function (z) {
         //var lastItem = $scope.choiceSet.choices.length - 1;
         $scope.choiceSet.choices.splice(z, 1);
     };
-    console.log("QUESTION ARRAY", $scope.que);
+    // console.log("QUESTION ARRAY", $scope.que);
     //========================//
     //======Submit Function==========//
     $scope.submit = function () {
-        console.log("Within Submit Function");
-        console.log("skills are:", $scope.tag);
-        console.log("skills are topic:", $scope.topic);
-        console.log("Corrct Ans", $scope.newque.correctAns);
-        console.log("$scope.choice", $scope.choices);
-        console.log("Result:", $scope.data);
-        console.log("Question Data is:::", $scope.newque);
+        // console.log("Within Submit Function");
+        // console.log("skills are:", $scope.tag);
+        // console.log("skills are topic:", $scope.topic);
+        // console.log("Corrct Ans", $scope.newque.correctAns);
+        // console.log("$scope.choice", $scope.choices);
+        // console.log("Result:", $scope.data);
+        // console.log("Question Data is:::", $scope.newque);
         if ($scope.newque.type == 'mutipleChoice') {
             $scope.multipleResponse = true;
         }
@@ -99,7 +111,7 @@ function questionController($scope, $http, $state, $stateParams) {
             tag:$scope.tag
         }
         // console.log("=========>dfdfd", $scope.newque.option);
-        console.log("Question Data is:::", $scope.newque);
+        // console.log("Question Data is:::", $scope.newque);
       //  console.log($scope.newque.topic);
         if ($scope.newque.topic != "" && $scope.newque.topic != undefined) {
             $scope.msg = 'Value Selected : ';
@@ -112,8 +124,10 @@ function questionController($scope, $http, $state, $stateParams) {
         if ($scope.msg == 'Value Selected : ') {
             $http.post("http://localhost:4000/addque", $scope.newque).then(function (res) {
                 console.log(res);
+                $state.go("testtemp");
             })
         }
+      
     }
     $scope.delete=function(id){
         console.log("within delete Function:",id);
@@ -125,36 +139,36 @@ function questionController($scope, $http, $state, $stateParams) {
     //=====================//
     //=======Redio Button=========//
     $scope.check = function (event, i) {
-        console.log("Event", event.target.checked);
+        // console.log("Event", event.target.checked);
 
-        console.log("choicessssss", i);
+        // console.log("choicessssss", i);
         if (event.target.checked == true) {
             $scope.data = i;
             $scope.checked = true;
         }
         else {
             //  $scope.data.splice(i, 1);
-            console.log($scope.data);
+            // console.log($scope.data);
         }
 
-        console.log("Result:", $scope.data);
+        // console.log("Result:", $scope.data);
     }
     //================//
     //======Checkbox ========//
     $scope.checkoptions = function (event, i) {
-        console.log("Event", event.target.checked);
+        // console.log("Event", event.target.checked);
 
-        console.log("choicessssss", i);
+        // console.log("choicessssss", i);
         if (event.target.checked == true) {
             $scope.data.push(i)
             $scope.checked = true;
         }
         else {
             $scope.data.splice(i, 1);
-            console.log($scope.data);
+            // console.log($scope.data);
         }
 
-        console.log("Result:", $scope.data);
+        // console.log("Result:", $scope.data);
         if($scope.data.length <2){
             $scope.validationmsg=true;
             $scope.msg="Please Select Atleast Two checkBox";
@@ -167,12 +181,12 @@ function questionController($scope, $http, $state, $stateParams) {
     //==click type is Mutipleopt======//
     $scope.multiOpt = function () {
         $scope.multipleResponse = false;
-        console.log("selected mutiplr check", $scope.multipleResponse);
+        // console.log("selected mutiplr check", $scope.multipleResponse);
     }
     //==========//
     //==click type is multiRes======//
     $scope.multiRes = function () {
         $scope.multipleResponse = true;
-        console.log("selected mutiplr Res", $scope.multipleResponse);
+        // console.log("selected mutiplr Res", $scope.multipleResponse);
     }
 }

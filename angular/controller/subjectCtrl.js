@@ -8,32 +8,29 @@ function subjectController($scope, $http, $state,$stateParams) {
     for(let i=0;i<res.data.result.length ;i++){
         $scope.result.push(res.data.result[i]);
      }
-    console.log("Result::",  $scope.result);
+    // console.log("Result::",  $scope.result);
         })
     
-  // console.log(localStorage.getItem("result"));
+  
     //==Delete Function==//
     $scope.delete=function(id){
-        console.log("Id:",id);
+        // console.log("Id:",id);
         $http.delete("http://localhost:4000/deletesubject/"+id).then(function(res){
-            console.log("within Delete method",res);
+            // console.log("within Delete method",res);
             $state.go("subject");
         })
-        console.log("Befor that Releated topic delete");
-        // $http.delete("http://localhost:4000/deletesubtopic/"+id).then(function(res){
-        //     console.log("within Delete method topic===>",res);
-        //     $state.go("subject");
-        // })
+        // console.log("Befor that Releated topic delete");
+      
 
     }
 
     //==Submit Function===//
     $scope.submit=function(){
         $http.post("http://localhost:4000/addsubject",$scope.newsub).then(function(res){
-            console.log(res); 
+            // console.log(res); 
         })
         $scope.newsub={};
-        $state.go("subject");
+        $state.go("topic");
         }
 
 }

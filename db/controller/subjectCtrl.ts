@@ -21,7 +21,7 @@ export class subController {
                     console.log("Subject Name Allready Present: ", res);
                } else {
                     result = await sub.collection.insertOne(record)
-                    console.log(result);
+                    //  console.log(result);
                     response.json({ result });
                }
 
@@ -46,26 +46,53 @@ export class subController {
           var result;
           async function deleteSub() {
                // var Q= await que.deleteMany({topic:_id}).populate('topic');
-               var top = await topic.find({ subjectId: subid }).populate('subjectId');
+               var top = await topic.find({ subjectId: subid }).select('_id');
                console.log("Topics:", top);
 
                for (let i = 0; i < top.length; i++) {
                     console.log("tOPIC is Topics:", top[i]._id);
-                    var quest = await que.find({ topic: top[i]._id }).populate('topic');
-                    console.log("qUESTIONS is QUETSION", quest);  
-                    // var tests = await test.find({ 'questions.question': quest[i]._id })
+                    var quest = await que.find({ 'topic': top[i]._id }).select('_id topic queText ');
+                    console.log("qUESTIONS is QUETSION", quest);
+               }
+               for (let i = 0; i < quest.length; i++) {
+                    var tests: any = await test.find({ 'questions.question': quest[i]._id });
+                    console.log("test template==>", tests);
+                    console.log("id==============>>>>>", tests.length);
+                    var del = await test.collection.updateMany({ 'questions.question': quest[i]._id }, { $pull: { questions: { question: quest[i]._id } } });
+                    console.log("========>", del);
                     // var testtemp = await test.deleteMany({ 'questions.question': quest[i]._id });
                     // console.log("Deleted Testtttt:", testtemp);
+                    var Quw = await que.find({ topic: top[i]._id });
+                  
                     var Q = await que.deleteMany({ topic: top[i]._id });
-                    console.log("Deleted Questionssss:", Q);
+                  
+                    var t = await topic.deleteMany({ subjectId: subid });
+                    // console.log("Question is:", t);
+                    // console.log("before Subject deleted");
+                    result = await sub.deleteOne({ _id: subid });
+                    console.log(result);
 
                }
-               var t= await topic.deleteMany({subjectId:subid});
-               console.log("Question is:",t);
-               result= await sub.deleteOne({_id:subid});
-               console.log(result);
+               //====================//
+               for (let i = 0; i < tests.length; i++) {
+                    for (let j = 0; j < tests[i].questions.length; j++) {
+                         for (let k = 0; k < quest.length; k++) {
+                              if (JSON.stringify(quest[k]._id) == JSON.stringify(tests[i].questions[j].question)) {
+                                   console.log("tset Name==>", tests[i].name)
+                                   //console.log("here is length of nbfvbfjkvbfkv:", tests[i]._id, "====", tests[i].questions[j].rightmarks, "-------", tests[i].totalmarks);
+                                   tests[i].totalmarks = tests[i].totalmarks - tests[i].questions[j].rightmarks;
+                                   console.log("Update total=====>", tests[i].totalmarks);
+                                   var updatetot = await test.collection.updateMany({ '_id': tests[i]._id }, { $set: { 'totalmarks': tests[i].totalmarks } });
+                                   console.log("Updated value is:", updatetot);
 
-               response.json({result});
+                              }
+                         }
+                    }
+               }
+               //=================//
+
+
+               response.json({ result });
 
           }
           return deleteSub();

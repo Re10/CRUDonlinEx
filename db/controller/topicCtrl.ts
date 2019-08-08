@@ -28,7 +28,7 @@ import * as mongoose from "mongoose";
             console.log("Topic Name Allready Present: ",res);
             }else{
             var result= await topic.collection.insertOne(recordData)
-             console.log(result);
+            //  console.log(result);
              response.json({result});
             }
 
@@ -51,13 +51,13 @@ import * as mongoose from "mongoose";
 
           @Delete("/deletetopic/:id")
           deleteTopic(@Param ("id") id: number,@Body() record: any,@Res() response:any) {
-           console.log("within remove function");
+        //    console.log("within remove function");
            var topicid = new mongo.ObjectID(id);
-           console.log("SubjectId",id);
+        //    console.log("SubjectId",id);
              
              async function deleteTopic(){
                  var result= await topic.deleteOne({_id:topicid});
-                   console.log(result);
+                //    console.log(result);
                    response.json({result});
                   
              } 
@@ -69,7 +69,7 @@ import * as mongoose from "mongoose";
                var topicid = new mongo.ObjectID(id);
                async function editTopic(){
                     result= await topic.findById({_id:topicid}).populate('subjectId');
-                    console.log("LIST TOPIC",result);
+                    // console.log("LIST TOPIC",result);
                     response.json({result});
                     
                } 
@@ -77,11 +77,11 @@ import * as mongoose from "mongoose";
               }
               @Put("/updatetopic/:id")
               updateTopic(@Param ("id") id:number ,@Body() record :any ,@Res() response:any){
-                  console.log("Record=ID",record,id);
+                //   console.log("Record=ID",record,id);
                   var topicid = new mongo.ObjectID(id);
                   async function updateTopic(){
                      var data =await topic.collection.updateOne({_id:topicid},{$set:{topicName:record.topicName}});
-                    console.log("++++++++",data);
+                    // console.log("++++++++",data);
                      response.json({data});
                   }
                   return updateTopic();

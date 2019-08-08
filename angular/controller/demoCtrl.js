@@ -13,9 +13,9 @@ $scope.numberBuffer = '';
 $scope.msg="hiiiiii";
 $scope.myvar=false;
 $scope.upload = function () {
-    console.log("within upload function");
+    // console.log("within upload function");
     $scope.msgs="hiiiiiilllllllllll";
-    console.log("here is msg",$scope.msg);
+    // console.log("here is msg",$scope.msg);
     $scope.myvar=true;
     
 }

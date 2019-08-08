@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-messages.min.js"></script>
+    <!--////////////////////////////-->
+    
+    <link rel="stylesheet" href="./style.css">
+
+    <title>Hello, world!</title>
+</head>
+
+<body ng-controller="assigntestController">
+{{msg}}
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <form name="myForm" ng-submit="submit()">
+
+        <div class="form-container">
+            <h3><strong>Add Questions</strong></h3>
+            <div class="form-group ">
+                <label for="fname">Title:</label>
+                <input type="text" class="form-control" id="title" placeholder="Title" ng-model="newasstest.title" >
+            </div>
+            <div class="form-group ">
+                <label for="fname">Description:</label>
+                <input type="text" class="form-control" id="description" placeholder="Description" ng-model="newasstest.description" >
+            </div>
+            <div flex-gt-xs="">
+                <h4>Select date</h4>
+                <md-datepicker ng-model="newasstest.date" md-placeholder="Enter date"></md-datepicker>
+              </div>
+        
+            <!-- <div class="form-group ">
+                <label for="fname">Date:</label>
+                <input type="date" class="form-control" id="description" placeholder="Question" ng-model="newasstest.date" >
+            </div> -->
+            <div class="form-group ">
+                <select name="test" ng-change="getTestDetail(testId)" ng-model="testId" >
+                    <label for="topic">Test Name:</label>
+                    <option value="">--Select Test--</option>
+
+                    <option ng-repeat="option in listtest" value="{{option._id}}" >{{option.name}}</option>
+
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="myFileField">Select a file: </label>
+                <input type="file" onchange="FileUpload(event)" class="form-control" id="myFileField"
+                    ng-model="newasstest.file" />
+            </div>
+    
+            <!-- <div class="form-group col-md-6">
+                <button type="button" class="btn btn-primary" ng-click="upload()">Upload</button>
+            </div> -->
+
+         
+            <div class="form-group col-md-6">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+           
+
+        </div>
+    </form>
+    <div class="form-container">
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">studentlist</th>
+                    <th scope="col">data</th>
+                    <th scope="col">Action</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="test in result">
+                    <td>{{$index+1}}</td>
+                    <td>{{test.title}}</td>
+                    <td>{{test.description}}</td>
+                    <td>{{test.studentlist.length}}</td>
+                    <td>{{test.date}}</td>
+                    <td><button type="submit" class="btn btn-primary" ng-click="send(test._id)">Send</button>
+                    </td>
+                    <input type="hidden" name="id" ng-model="test._id">
+                </tr>
+
+
+            </tbody>
+        </table>
+
+    </div>
+
+   
+</body>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+
+</html>

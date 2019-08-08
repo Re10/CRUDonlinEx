@@ -31,7 +31,7 @@ function testtempController($scope, $http, $state, $stateParams) {
 
  $http.get("http://localhost:4000/listtest").then(function (res) {
     $scope.listtest=res.data.result;
-    console.log("List Of Test=>",$scope.listtest);
+    // console.log("List Of Test=>",$scope.listtest);
   })
 
     //for md -AutoCompltete//
@@ -66,9 +66,9 @@ function testtempController($scope, $http, $state, $stateParams) {
   //-----------------///
 
   $scope.addQuestions = function () {
-    console.log("here is in function::");
+    // console.log("here is in function::");
     $scope.myvar = true;
-    console.log($scope.myvar);
+    // console.log($scope.myvar);
 
   }
 
@@ -77,7 +77,7 @@ function testtempController($scope, $http, $state, $stateParams) {
     for(let i=0;i<$scope.listtest.length;i++){
       if($scope.listtest[i].name ==  event.target.value){
         $scope.msg="Test Name Already Exists Please Enter Unique Test Name";
-        console.log("name exists ");
+        // console.log("name exists ");
       }
     }
   }
@@ -130,11 +130,11 @@ function testtempController($scope, $http, $state, $stateParams) {
   }
   //===Blur event to calculate totalmarks===//
   $scope.valueChange = function (event, index) {
-    console.log("here is ng-blur function::", event.target.value, index);
+    // console.log("here is ng-blur function::", event.target.value, index);
     $scope.total = event.target.value;
-    console.log("Total==>", $scope.total);
+    // console.log("Total==>", $scope.total);
     $scope.totalValue = parseInt($scope.totalValue) + parseInt($scope.total);
-    console.log("total value array:", $scope.totalValue);
+    // console.log("total value array:", $scope.totalValue);
   }
   $scope.submit = function () {
    
@@ -149,7 +149,7 @@ function testtempController($scope, $http, $state, $stateParams) {
       $scope.wrongmarks.push(parseInt($scope.questionArray[i].wrongmarks));
     }
     $http.post("http://localhost:4000/addtest", $scope.newtest).then(function (res) {
-      console.log("response",res);
+      // console.log("response",res);
     })
 
 
@@ -158,7 +158,7 @@ function testtempController($scope, $http, $state, $stateParams) {
   $scope.delete=function(id){
     console.log("within delete Function:",id);
     $http.delete("http://localhost:4000/deletetest/"+id).then(function(res){
-        console.log("within Delete method",res);
+        // console.log("within Delete method",res);
         
     })
 }

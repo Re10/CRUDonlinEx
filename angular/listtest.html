@@ -1,0 +1,58 @@
+
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="./controller/testCtrl.js"></script>
+
+    <title>Hello, world!</title>
+</head>
+
+<body>
+       
+    <div class="container" ng-controller="listtestController">
+         
+            <form name="myForm">
+         
+        <div class="row">
+            <h1>My Interview Portal</h1>
+            <hr>
+            <div class="col-md-12">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Test</th>
+                            <th>No of Questions</th>
+                          
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      
+                        <tr ng-repeat="t in result">
+                            <td>{{t.name}}</td>
+                            <td>{{t.questions.length}}</td>
+                          
+                            <td><a ui-sref="test({id:t._id})" ui-sref-active="active" class="btn btn-success">Start Test</a></td>
+                        </tr>
+                       
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+      
+    </form>
+    </div>
+  
+    
+</body>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+
+</html>

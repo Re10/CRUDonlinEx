@@ -37,7 +37,7 @@
         <div class="form-container">
             <h3><strong>Add Questions</strong></h3>
             <div class="form-group ">
-                <select name="subject" ng-change="getSubDetail(subjectId)" ng-model="subjectId">
+                <select name="subject" ng-change="getSubDetail(subjectId)" ng-model="subjectId" required>
                     <label for="topic">Subject Name:</label>
                     <option value="">--Select Subject--</option>
 
@@ -46,7 +46,7 @@
                 </select>
             </div>
             <div class="form-group ">
-                <select name="topic"  ng-change="gettopic(topic)" ng-model="topic">
+                <select name="topic"  ng-change="gettopic(topic)" ng-model="topic" required>
                     <label for="topic">Topic Name:</label>
                     <option value="">--Select Topics--</option>
 
@@ -56,14 +56,14 @@
             </div>
             <div class="form-group">
                 <label for="fname">Question Text</label>
-                <input type="text" class="form-control" id="name" placeholder="Question" ng-model="newque.queText">
+                <input type="text" class="form-control" id="name" placeholder="Question" ng-model="newque.queText" required>
             </div>
 
             <div class="form-group">
                 <label for="type">Select Types</label><br>
-                <input type="radio" name="type" value="mutipleChoice" ng-click="multiOpt()" ng-model="newque.type">
+                <input type="radio" name="type" value="mutipleChoice" ng-click="multiOpt()" ng-model="newque.type" required>
                 Multiple-Choice<br>
-                <input type="radio" name="type" value="multipleResponse" ng-click="multiRes()" ng-model="newque.type">
+                <input type="radio" name="type" value="multipleResponse" ng-click="multiRes()" ng-model="newque.type" required>
                 Multiple-Response
 
             </div>
@@ -73,24 +73,25 @@
                 </div>
                 <div class="col-sm-5" style="display:inline-block;">
                     <fieldset data-ng-repeat="field in choiceSet.choices track by $index">
-                        <input type="text" rows="4" cols="50" ng-model=" choiceSet.choices[$index]" />
+                        <input type="text" rows="4" cols="50" ng-model=" choiceSet.choices[$index]" required/>
                         <button type="button" class="btn btn-default btn-sm" ng-click="removeChoice($index)">
                             <span class="glyphicon glyphicon-minus"></span> REMOVE
                         </button>
 
                     </fieldset>
+                    <span style="color: brown" ng-if="showmsg == true">{{message}}</span>
 
                 </div>
                 <div class=" col-sm-5" ng-show="multipleResponse ==false" style="display:inline-block;">
                     <label ng-repeat="opt in que">
                         <input type="radio" name="option" ng-click="check($event,$index)" ng-model="newque.correctAns"
-                            value="correctAns">{{ opt }}
+                            value="correctAns" >{{ opt }}
                     </label>
                 </div>
                 <div class=" col-sm-5" ng-show="multipleResponse ==true" style="display:inline-block;">
                     <label ng-repeat="opt in que">
                         <input ng-click="checkoptions($event,$index)" type="checkbox" name="option"
-                            value="correctAns">{{ opt }}
+                            value="correctAns" >{{ opt }}
                     </label>
                     <span style="color:red;" ng-show="validationmsg ==true">{{msg}}</span><br />
                 </div>
@@ -99,13 +100,13 @@
 
             <div class="form-group">
                 <label for="solution">Solutions</label>
-                <input type="text" class="form-control" id="name" placeholder="Solution" ng-model="newque.solution">
+                <input type="text" class="form-control" id="name" placeholder="Solution" ng-model="newque.solution" required>
             </div>
             <div class="row">
                 <div class="form-group col-md-6" ng-cloak>
                     <label for="tag">Tags</label>
 
-                    <md-chips class="custom-chips" ng-model="tag" ng-click="add()">
+                    <md-chips class="custom-chips" ng-model="tag" ng-click="add()" >
 
                         <button md-chip-remove class="md-primary closeButton">
                             <md-icon md-svg-icon="md-close"></md-icon>

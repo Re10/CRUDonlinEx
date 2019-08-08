@@ -24,36 +24,37 @@ function topicController($scope, $http, $state) {
     })
    
     $scope.submit = function () {
-        console.log("subject", $scope.subject);
-        console.log("topic:", $scope.newtopic);
+        // console.log("subject", $scope.subject);
+        // console.log("topic:", $scope.newtopic);
         $scope.data = [];
         $scope.subjectObj = {
             id: $scope.subject
         }
-        console.log("topic:", $scope.subjectObj);
+        // console.log("topic:", $scope.subjectObj);
         $scope.data.push($scope.subjectObj);
         $scope.data.push($scope.newtopic);
-        console.log("DATA:", $scope.data);
+        // console.log("DATA:", $scope.data);
         if ($scope.subject != "" && $scope.subject != undefined)
             $scope.msg = 'Value Selected : ';
         else
             $scope.msg = 'Please Select Dropdown Value';
         if ($scope.msg == 'Value Selected : ') {
-            console.log("withtin")
+            // console.log("withtin")
             $http.post("http://localhost:4000/addtopic", $scope.data).then(function (res) {
                 console.log(res);
+                $state.go("question");
             })
 
         }
         else
             console.log('Please Select Dropdown Value');
-
+       
     }
     $scope.delete=function(id){
         console.log("Id:",id);
         $http.delete("http://localhost:4000/deletetopic/"+id).then(function(res){
-            console.log("within Delete method",res);
-            $state.go("topic");
+            // console.log("within Delete method",res);
+            $state.go("question");
         })
 
     } 

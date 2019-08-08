@@ -11,7 +11,7 @@ import * as mongoose from "mongoose";
  export class queController {
      @Post("/addque")
      addQue(@Body() record: any ,@Res() response:any) {
-        console.log(record);
+        // console.log(record);
         var id=new mongoose.Types.ObjectId(record.topic)
         var recordData={
             queText:record.queText,
@@ -23,10 +23,10 @@ import * as mongoose from "mongoose";
             tag:record.tag
 
         }
-        console.log("Id =>",recordData);
+        // console.log("Id =>",recordData);
         async function addQue(){
             var result= await que.collection.insertOne(recordData);
-            console.log("Result==>",result);
+            // console.log("Result==>",result);
             response.json({result});
 
         } 
@@ -41,7 +41,7 @@ listQue(@Body() record: any,@Res() response:any) {
    var result;
    async function listQue(){
         result= await que.find().populate('topic');                         
-        console.log("LIST Questions",result);
+        // console.log("LIST Questions",result);
         response.json({result});
         
    } 
@@ -59,11 +59,11 @@ listQuestion(@Body() record: any,@Res() response:any) {
         result= await que.find(
             { "tag": { $all: record}}
          ).select('_id queText');                        
-        console.log("LIST Questions",result);
+        // console.log("LIST Questions",result);
         response.json({result});
         
    } 
-   console.log('aaaa');
+//    console.log('aaaa');
   return listQuestion();
   }
 
@@ -71,22 +71,22 @@ listQuestion(@Body() record: any,@Res() response:any) {
   
   @Delete("/deleteque/:id")
   deleteQue(@Param("id") id:number, @Body() record:any ,@Res() response:any){
-      console.log("Id:",id);
+    //   console.log("Id:",id);
       var queid=new mongo.ObjectID(id);
       async function deleteQue(){
           var result=await que.deleteOne({_id:queid});
-          console.log("result;",result);
+        //   console.log("result;",result);
           response.json({result});
       }
       return deleteQue();
   }
   @Get("/editque/:id")
   getOneQue(@Param ("id") id:any, @Body() record:any, @Res() response:any){
-    console.log("Id======>",id);  
+    // console.log("Id======>",id);  
     var queid=new mongo.ObjectID(id);
     async function getOneQue(){
         var result=await que.findById({_id:queid}).populate('topic');
-        console.log("Result:",result);
+        // console.log("Result:",result);
         response.json({result});
     }
     return getOneQue();
@@ -94,11 +94,11 @@ listQuestion(@Body() record: any,@Res() response:any) {
   @Put("/updateque/:id")
   updateQuestion(@Param ("id") id:number ,@Body() record:any ,@Res() response:any){
       var queid=new mongo.ObjectID(id);
-      console.log("Question id:",queid);
-      console.log("RECORDD:::::",record);
+    //   console.log("Question id:",queid);
+    //   console.log("RECORDD:::::",record);
       async function updateQuestion(){
        var result=await que.collection.updateOne({_id:queid},{$set:record});
-       console.log("Result Updated ==========>",result);
+    //    console.log("Result Updated ==========>",result);
        response.json({result});
       }
       return updateQuestion();

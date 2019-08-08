@@ -10,10 +10,10 @@ import * as mongoose from "mongoose";
 export class testController {
     @Post('/addtest')
     addTest(@Body() record: any, @Res() response: any) {
-        console.log("record::", record);
-        console.log("questions id:", record.question);
-        console.log("right:", record.rightmarks);
-        console.log("wrong:", record.wrongmarks);
+        // console.log("record::", record);
+        // console.log("questions id:", record.question);
+        // console.log("right:", record.rightmarks);
+        // console.log("wrong:", record.wrongmarks);
         async function addTest() {
             var data = await test.findOne({ name: record.name });
             
@@ -64,13 +64,13 @@ export class testController {
 
     @Get("/edittest/:id")
     getOneTest(@Param("id") id: any, @Body() record: any, @Res() response: any) {
-        console.log("Within LIST ONE TEST");
+        // console.log("Within LIST ONE TEST");
         var testid = new mongo.ObjectID(id);
-        console.log("Id======>", testid);
+        // console.log("Id======>", testid);
 
         async function getOneTest() {
             var result = await test.findById({ _id: testid}).populate({ path:'questions.question' , select:'queText'});
-            console.log("Result:", result);
+            // console.log("Result:", result);
             response.json({result});
             //  return result;
         }
@@ -79,8 +79,8 @@ export class testController {
     @Put("/updatetest/:id")
     updateTest(@Param ("id") id:number ,@Body() record:any ,@Res() response:any){
         var testid=new mongo.ObjectID(id);
-        console.log("Question id:",testid);
-        console.log("RECORDD:::::",record);
+        // console.log("Question id:",testid);
+        // console.log("RECORDD:::::",record);
          async function updateTest(){
             var que=[];
             var quetionID=[];
@@ -104,7 +104,7 @@ export class testController {
                     status: record.status
                 }
           var result=await test.collection.updateOne({_id:testid},{$set:detailtest});
-          console.log("Result Updated ==========>",result);
+        //   console.log("Result Updated ==========>",result);
           response.json({result});
          }
         return updateTest();
@@ -115,10 +115,20 @@ export class testController {
       var testid=new mongo.ObjectID(id);
       async function deleteTest(){
           var result=await test.deleteOne({_id:testid});
-          console.log("result;",result);
+        //   console.log("result;",result);
           response.json({result});
       }
       return deleteTest();
+  }
+  @Get('/listtestpublish')
+  listTestPublish(@Body() record: any, @Res() response: any) {
+      //console.log("record:",record);
+      async function listTestPublish() {
+          var result = await test.find({'status':'Publish'}).populate('questions.question');
+          console.log("Resultttttt=>",result);
+          response.json({ result });
+      }
+      return listTestPublish();
   }
 }
 

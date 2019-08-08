@@ -18,21 +18,21 @@ function editqueController($scope, $http, $state, $stateParams) {
     $scope.que = [];
    
     $http.get("http://localhost:4000/editque/" + id).then(function (res) {
-        console.log("RESPONSE:",res);
-        console.log("Within get method of ", res.data.result);
+        // console.log("RESPONSE:",res);
+        // console.log("Within get method of ", res.data.result);
         $scope.newque = res.data.result;
-        console.log("nsjnjsnd", $scope.newque.tag);
+        // console.log("nsjnjsnd", $scope.newque.tag);
         $scope.tag =$scope.newque.tag;
-        console.log("nsjnjsnd", $scope.newque.correctAns);
-        console.log("IDD", $scope.newque._id);
-        console.log("typeeeeeeeee:", $scope.newque.type);
+        // console.log("nsjnjsnd", $scope.newque.correctAns);
+        // console.log("IDD", $scope.newque._id);
+        // console.log("typeeeeeeeee:", $scope.newque.type);
         if ($scope.newque.type == 'multipleResponse') {
             $scope.multipleResponse = true;
-            console.log("redio", $scope.multipleResponse);
+            // console.log("redio", $scope.multipleResponse);
         }
         else {
             $scope.multipleResponse = false;
-            console.log("redio", $scope.multipleResponse);
+            // console.log("redio", $scope.multipleResponse);
         }
 
     $scope.addNewChoice = function () {
@@ -46,8 +46,8 @@ function editqueController($scope, $http, $state, $stateParams) {
 
     $scope.submit = function (queId) {
         $scope.que
-        console.log("Id =>",queId);
-        console.log( "tags are" ,$scope.tag);
+        // console.log("Id =>",queId);
+        // console.log( "tags are" ,$scope.tag);
         $scope.newque = {
             queText: $scope.newque.queText,
             solution: $scope.newque.solution,
@@ -57,10 +57,10 @@ function editqueController($scope, $http, $state, $stateParams) {
             option: $scope.newque.option,
             tag:$scope.tag
         }
-        console.log("Within PUT this Data",   $scope.que,"=======",$scope.newque);
-        console.log("Within Submit FUnction opt fgfhghgh", $scope.option);
+        // console.log("Within PUT this Data",   $scope.que,"=======",$scope.newque);
+        // console.log("Within Submit FUnction opt fgfhghgh", $scope.option);
         $http.put('http://localhost:4000/updateque/' + queId, $scope.newque).then(function(res){
-            console.log("Within Put FUnction",res);
+            // console.log("Within Put FUnction",res);
         })
         // $state.go("topic");
 
@@ -68,36 +68,36 @@ function editqueController($scope, $http, $state, $stateParams) {
     }
     //=======Redio Button=========//
     $scope.check = function (event, i) {
-        console.log("Event", event.target.checked);
+        // console.log("Event", event.target.checked);
 
-        console.log("choicessssss", i);
+        // console.log("choicessssss", i);
         if (event.target.checked == true) {
             $scope.data = i;
             $scope.checked = true;
         }
         else {
             //  $scope.data.splice(i, 1);
-            console.log($scope.data);
+            // console.log($scope.data);
         }
 
-        console.log("Result:", $scope.data);
+        // console.log("Result:", $scope.data);
     }
     //================//
     //======Checkbox ========//
     $scope.checkoptions = function (event, i) {
-        console.log("Event", event.target.checked);
+        // console.log("Event", event.target.checked);
 
-        console.log("choicessssss", i);
+        // console.log("choicessssss", i);
         if (event.target.checked == true) {
             $scope.data.push(i)
             $scope.checked = true;
         }
         else {
             $scope.data.splice(i, 1);
-            console.log($scope.data);
+            // console.log($scope.data);
         }
 
-        console.log("Result:", $scope.data);
+        // console.log("Result:", $scope.data);
         if($scope.data.length <2){
             $scope.validationmsg=true;
             $scope.msg="Please Select Atleast Two checkBox";
@@ -109,13 +109,13 @@ function editqueController($scope, $http, $state, $stateParams) {
 //==click type is Mutipleopt======//
 $scope.multiOpt = function () {
     $scope.multipleResponse = false;
-    console.log("selected mutiplr check", $scope.multipleResponse);
+    // console.log("selected mutiplr check", $scope.multipleResponse);
 }
 //==========//
 //==click type is multiRes======//
 $scope.multiRes = function () {
     $scope.multipleResponse = true;
-    console.log("selected mutiplr Res", $scope.multipleResponse);
+    // console.log("selected mutiplr Res", $scope.multipleResponse);
 }
 
 

@@ -36,7 +36,7 @@
                 <select ng-model="register.countryId" ng-options="country.id as country.name for country in register.countries"></select>
             </div> -->
             <div class="form-group ">
-            <select name="subject" ng-model="subject">
+            <select name="subject" ng-model="subject" required>
                 <label for="subjetc">SubjectName:</label>
                 <option value="">--Select Subject--</option>
                 
@@ -46,7 +46,7 @@
             </div> 
             <div class="form-group ">
                     <label for="topic">Topic Name:</label>
-                    <input type="text" class="form-control" ng-model="newtopic.topicName" placeholder="Addtopic">
+                    <input type="text" class="form-control" ng-model="newtopic.topicName" placeholder="Addtopic" required>
                 </div>
             <div class="form-group col-md-6">
                 <button type="submit" class="btn btn-primary">Submit</button>
