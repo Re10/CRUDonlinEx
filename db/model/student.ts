@@ -1,6 +1,7 @@
 import{ mongoose } from "../config";
 import { Document , Schema } from "mongoose";
 import { text } from "body-parser";
+import { ObjectID } from "bson";
 
 const studSchema: Schema = new Schema({
    title:String,
@@ -13,6 +14,12 @@ const studSchema: Schema = new Schema({
    name:String,
    email:String,
    pass:String,
+   marks:[{
+      mark:Number,
+      status:String,
+      correct:Array
+      
+   } ],
    
   }],
   date:Date

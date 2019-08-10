@@ -134,9 +134,9 @@
                                                 <td> <input ng-click="checkoptions($event,$index)" id="{{que._id}}" type="checkbox" name="option"
                                                     value=" {{que.questions}}#{{que.rightmarks}}#{{ que.wrongmarks}}"></td>
                                             <td  >  {{que.question.queText }}</td>
-                                            <td> <input type="text" id="rmark" placeholder="Right Marks" style="color: black;"
+                                            <td> <input type="number" id="rmark" placeholder="Right Marks" style="color: black;"
                                                 ng-model="que.rightmarks" value="{{rightmarks}}" ng-blur="valueChange($event,$index)" ></td>
-                                            <td> <input type="text" id="wmark" placeholder="Wrong Marks" style="color: black;"
+                                            <td> <input type="number" id="wmark" placeholder="Wrong Marks" style="color: black;"
                                                 ng-model="que.wrongmarks" value="{{wrongmarks}}"></td>
                                            
                                             <input type="hidden" name="id" ng-model="que.id">

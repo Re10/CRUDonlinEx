@@ -26,13 +26,13 @@
                             <form name="myForm">
     
                                 <label>{{questionText}}</label>
-                                <div class="radio" ng-show="multipleRes ==false" ng-repeat="o in options">
+                                <div class="radio" ng-show="multipleRes == false" ng-repeat="o in options">
                                     <label>
                                         <input ng-model="value" ng-click="check($event,$index)" type="radio" name="option"
                                             value="option">{{o}}
                                     </label>
                                 </div>
-                                <div class="checkbox" ng-show="multipleRes ==true" ng-repeat="o in options">
+                                <div class="checkbox"  ng-show="multipleRes == true" ng-repeat="o in options">
                                     <label>
                                         <input ng-model="option" ng-click="checkoptions($event,$index)" type="checkbox"
                                             name="option" value="option">{{o}}

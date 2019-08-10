@@ -1,6 +1,6 @@
 import { JsonController, Body, Post, Req, Res, UploadedFile, Put, Get, Params, Param, Delete } from "routing-controllers";
 import { test } from "../model/testtemplate";
-
+import { stud } from "../model/student";
 import { response } from "express";
 import { any } from "../../onlineexams/angular/angular-ui-router";
 import * as mongo from 'mongodb';
@@ -129,6 +129,26 @@ export class testController {
           response.json({ result });
       }
       return listTestPublish();
+  }
+  @Get('/listtestpublishtest/:id')
+  listAssignTestPublish(@Param ("id") id:any, @Body() record: any, @Res() response: any) {
+    var studtestid=new mongo.ObjectID(id);
+    console.log("Id==>",studtestid);
+      async function listAssignTestPublish() {
+          var data:any = await stud.findById({'_id':studtestid}).populate('testId');
+          //.populate('questions.question');
+          console.log("Resultttttt=>",data);
+          console.log("IDDDDD:",data.testId._id);
+          if(data){
+          var result= await test.findById({'_id':data.testId._id}).populate('questions.question')
+          console.log("PUBLISH TEST:",result);
+          response.json({ result });
+          }
+          else{
+              console.log("NO PUBLISH TEST HERE");
+          }
+      }
+      return listAssignTestPublish();
   }
 }
 

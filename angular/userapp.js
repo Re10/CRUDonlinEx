@@ -4,7 +4,7 @@ var imgFile;
 var application = angular.module("myApplication", ['ngMaterial', 'ngMessages', 'material.svgAssetsCache','ui.router']).config(($stateProvider, $httpProvider, $urlRouterProvider) => {
     //$qProvider.errorOnUnhandledRejections(false); ['ngMaterial', 'ngMessages', 'material.svgAssetsCache']
     $stateProvider.state("login", {
-            url: "/login",
+            url: "/login:id",
             templateUrl: "login.html",
             controller: "loginController",
             controllerAs: "loginCtrl"

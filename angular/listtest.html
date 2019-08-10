@@ -34,11 +34,11 @@
                     </thead>
                     <tbody>
                       
-                        <tr ng-repeat="t in result">
-                            <td>{{t.name}}</td>
-                            <td>{{t.questions.length}}</td>
+                        <tr >
+                            <td>{{result.name}}</td>
+                            <td>{{result.questions.length}}</td>
                           
-                            <td><a ui-sref="test({id:t._id})" ui-sref-active="active" class="btn btn-success">Start Test</a></td>
+                            <td><a ui-sref="test({id:result._id})" ui-sref-active="active" class="btn btn-success">Start Test</a></td>
                         </tr>
                        
                     </tbody>

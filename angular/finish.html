@@ -20,11 +20,12 @@
                     <div class="panel-heading">{{testName}} - Result</div>
                     <div class="panel-body">
                         <center>
-                            <h2 class="">Total no of Questions: {{totque}}</h2>
-                            <h2 class="text-success"> Total Marks: {{totalmarks}}
+                            <h2 class="">Total no of Questions: {{quelength}}</h2>
+                            <h2 class="text-success"> Total Score: {{totalscore}}
+                            <h2 class="text-success"> Final Score: {{totalmarks}}
                             <h3 class="text-success"> Correct Answers: {{correct}}
                             <span class="text-danger">Wrong Answers: {{wrong}}</span></h3>
-                            <span class="text-danger" ng-if="mymsg == true">{{msg}}</span></h3>
+                            <span class="text-danger" ng-if="mymsg == true">{{status}}</span></h3>
                             <div >
                                     <button type="button" class="btn btn-primary" ng-click="result()">Result</button>
                                 </div>
